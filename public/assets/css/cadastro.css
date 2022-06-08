@@ -50,7 +50,6 @@ h1 {
 .div_cadastro {
     display: flex;
     margin-left: 20px;
-    margin-right: 90px;
 }
 
 .box_inputs {
@@ -87,7 +86,7 @@ form input {
     margin-top: 16px;
     background-color: #ff2e51;
     color: white;
-    padding: 15px 15px 35px;
+    padding: 10px 15px 10px;
     width: 400px;
     align-self: center;
     font-size: 18px;
@@ -115,4 +114,9 @@ form input {
     100% {
         top: 30px
     }
+}
+
+#mensagem_erro {
+    font-size: 12px;
+    padding: 15px 4px;
 }

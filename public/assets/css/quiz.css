@@ -99,7 +99,8 @@ body {
     border-radius: 25px;
     cursor: pointer;
     color: #FFFFFF;
-    transition: 0.5px;
+    transition: 0.5s;
+    z-index: 1;
 }
 
 .pergunta_box_btn:hover {
@@ -129,16 +130,20 @@ body {
     flex-direction: column;
     align-items: center;
 }
+
 .metricasBox{
     display: flex;
     margin: 25px 0;
 }
+
 .metricas{    
     padding: 20px;
-    border-radius: 60px;
+    border-radius: 25px;
     text-align: center;
     margin: 0 5px;
     color: white;
+    font-size: 15px;
+    border: none;
 }
 .metricas.moon{   
     background: rgb(255,77,160);
@@ -164,13 +169,28 @@ body {
     background: rgb(255,77,160);
 }
 
-h2 {
+.chamada {
     color: #ff2e51;
+    font-size: 35px;
+    padding: 0px 4px;
+    text-align: center;
+}
+.pergunta_title {
+    color: #ff2e51;
+    font-size: 30px;
+    padding: 10px 10px;
 }
 
 
 p {
     color: #ff2e51;
+    font-size: 20px;
+}
+
+.final {
+    font-size: 50px;
+    color: #8f85b9;
+
 }
 
 .finalizar {
@@ -193,6 +213,11 @@ p {
     background: #ff2e51;
     border: #ff2e51 solid 3px;
 }
+
+.resultado {
+    color: #ff2e51;
+    font-size: 40px;
+}
 .grafico{
     width: 40%;
     margin: 0 auto;
@@ -200,3 +225,17 @@ p {
 .grafico.inactive{
     display: none;
 }
+
+/* .recomecar_btn {
+        font-size: 15px;
+        color: white;
+        background: #8f85b9;
+        border: 3px #8f85b9;
+        border-radius: 60px;
+        padding: 15px 90px;
+        position: absolute;
+        margin-top: 390px;
+        margin: 0 5px;
+        cursor: pointer;
+        
+} */

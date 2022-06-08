@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="./assets/css/cadastro.css">
     <link rel="stylesheet" href="./assets/css/header.css">
     <link rel="stylesheet" href="./assets/css/footer.css">
-    <script src="./js/funcoes.js"></script>
+    <script src="../js/funcoes.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -42,8 +42,8 @@
                 <form>
                     <label for="nomeInput">Nome: </label>
                     <input maxlength="45" type="text" required id="nomeInput" placeholder="seu nome completo"><br>
-                    <label for="usuarioInput">Nome de Usuário: </label>
-                    <input maxlength="45" type="text" required id="usuarioInput" placeholder="seu nickname"><br>
+                    <label for="nicknameInput">Nome de Usuário: </label>
+                    <input maxlength="45" type="text" required id="nicknameInput" placeholder="seu nickname"><br>
                     <label for="nascimentoInput">Data de nascimento:</label>
                     <input maxlength="11"type="date" required id="nascimentoInput"
                         data-mask="0000-00-00" maxlength="10" autocomplete="off""><br>
@@ -55,8 +55,6 @@
                     <input maxlength="12" type="password" required id="senhaInput" placeholder=" ******"><br>
                     <label for="confirmacaoInput"> Confirme sua senha: </label>
                     <input maxlength="12" type="password" required id="confirmacaoInput" placeholder=" ******"><br>
-
-                    <!-- <button type="button">Cadastrar</button> -->
 
                     <button onclick="cadastrar()" class="btn_cadastrar" type="button">CADASTRAR</button>
                 </form>
@@ -88,6 +86,7 @@
                 <h2>Copyright &copy; 2022 Sailor Club & Bruna Silva. Todos os direitos reservados.</h2>
             </div>
         </div>
+        
     </footer>
 </body>
 
@@ -99,7 +98,7 @@
         //Recupere o valor da nova input pelo nome do id
         // Agora vá para o método fetch logo abaixo
         var nomeVar = nomeInput.value;
-        var usuarioVar = usuarioInput.value;
+        var nicknameVar = nicknameInput.value;
         var nascimentoVar = nascimentoInput.value;
         var emailVar = emailInput.value;
         var celularVar = celularInput.value;
@@ -107,9 +106,9 @@
 
         var confirmacaoVar = confirmacaoInput.value;
 
-        if (nomeVar == "" || usuarioVar == "" || nascimentoVar == "" || emailVar == "" || celularVar == "" || senhaVar == "" || confirmacaoVar == "") {
+        if (nomeVar == "" || nicknameVar == "" || nascimentoVar == "" || emailVar == "" || celularVar == "" || senhaVar == "" || confirmacaoVar == "") {
             cardErro.style.display = "block"
-            mensagem_erro.innerHTML = "Por favor, preencha todos os campos para prosseguir";
+            mensagem_erro.innerHTML = "Por favor, preencha todos os campos para prosseguir.";
 
             finalizarAguardar();
             return false;
@@ -119,7 +118,7 @@
         if (emailVar.indexOf('@') == -1 || emailVar.indexOf('.com') == -1) {
             //cardErro.style.display = 'block'
             mensagem_erro.innerHTML =
-                'Ops, e-mail inválido! Verifique e tente novamente.'
+                'Ops, e-mail inválido! Por favor, insira tente novamente.'
             finalizarAguardar()
             return false
         } else {
@@ -129,7 +128,7 @@
         if (senhaVar != confirmacaoVar) {
             //cardErro.style.display = 'block'
             mensagem_erro.innerHTML =
-                'As senhas inseridas devem ser iguais para prosseguir!'
+                'As senhas inseridas não coincidem!'
             finalizarAguardar()
             return false
         } else {
@@ -147,7 +146,7 @@
                 // crie um atributo que recebe o valor recuperado aqui
                 // Agora vá para o arquivo routes/usuario.js
                 nomeServer: nomeVar,
-                usuarioServer: usuarioVar,
+                nicknameServer: nicknameVar,
                 nascimentoServer: nascimentoVar,
                 emailServer: emailVar,
                 celularServer: celularVar,
@@ -162,8 +161,8 @@
 
                 mensagem_erro.innerHTML = "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
 
+                window.location = "./login.html";
                 setTimeout(() => {
-                    window.location = "login.html";
                 }, "2000")
 
                 limparFormulario();

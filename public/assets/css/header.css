@@ -6,7 +6,6 @@
 }
 
 header {
-    /* background: linear-gradient(90deg, rgba(238,210,156,1) 1%, rgba(255,201,220,1) 29%, rgba(239,133,136,1) 84%); */
     background-color: #ffa4c1;
     padding: 4px 0;
     display: flex;

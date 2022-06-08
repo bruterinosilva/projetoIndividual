@@ -1,10 +1,10 @@
 CREATE DATABASE SailorClub;
 USE SailorClub;
 
-CREATE TABLE usuarios (
+CREATE TABLE usuario (
 idUsuario int primary key auto_increment,
 nome varchar (45),
-usuario varchar (45),
+nickname varchar (45),
 nascimento date, 
 email varchar (80),
 celular char (11),
@@ -20,20 +20,35 @@ ptsSailorMars int,
 ptsSailorJupiter int,
 ptsSailorVenus int,
 fkUsuario int,
-foreign key (fkUsuario) references usuarios (idUsuario)
+foreign key (fkUsuario) references usuario (idUsuario)
 );
 
-CREATE TABLE forum (
-	idForum int primary key auto_increment,
+CREATE TABLE aviso (
+	idAviso int primary key auto_increment,
 	titulo varchar(100),
     descricao varchar(150),
 	fkUsuario int,
-	foreign key (fkUsuario) references usuarios (idUsuario)
+	foreign key (fkUsuario) references usuario (idUsuario)
 ); 
+
+   SELECT 
+            a.idAviso AS idAviso,
+            a.titulo,
+            a.descricao,
+            a.fkUsuario,
+            u.idUsuario AS idUsuario,
+            u.nome,
+            u.email,
+            u.senha
+        FROM aviso as a
+            INNER JOIN usuario u
+                ON a.fkUsuario = u.idUsuario;
 
 select * from quiz;
 
-select * from usuarios;
+select * from usuario;
+
+select * from aviso;
 
 SET foreign_key_checks = 0;
 -- Delete o que tiver que deletar

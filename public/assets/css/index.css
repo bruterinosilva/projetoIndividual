@@ -61,6 +61,7 @@ body {
     padding: 0;
     background-color: #FFDCE7;
     position: relative;
+    background-image: url("../img/background_site.png");
 }
 
 @keyframes bounce {
@@ -132,7 +133,7 @@ body {
 
 #banner3 {
     display: flex;
-    background-image: url("../img/background_site.png");
+    /* background-image: url("../img/background_site.png"); */
     width: 100%;
 }
 

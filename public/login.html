@@ -42,17 +42,17 @@
                 <h1>Acesse sua conta!</h1><br>
                 <form>
                     <label for="emailInput"> E-mail: </label>
-                    <input type="email" required id="emailInput email-mask" placeholder=" seuemail@dominio.com"><br>              
+                    <input type="email" required id="emailInput" placeholder=" seuemail@dominio.com"><br>              
                     <label for="senhaInput"> Senha: </label>
-                    <input type="password" required id="senhaInput password-mask" placeholder=" ******"><br>
+                    <input type="password" required id="senhaInput" placeholder=" ******"><br>
                 
-                    <!-- <button type="button">Entrar</button> -->
-                    <input onclick="entrar()" class="btn_entrar" type="submit" type="button" value="ENTRAR">
+                    
+                    <button onclick="entrar()" class="btn_entrar" type="button">ENTRAR</button>
             </form>
-            <p>Não é membro? <a href="cadastro.html">Cadastre-se agora!</a></p>
+            <p>Não é um membro? <a class="member" href="cadastro.html">Cadastre-se agora!</a></p>
         </form>
         <div id="div_aguardar" class="loading-div">
-          <img src="./assets/circle-loading.gif" id="loading-gif" />
+          <!-- <img src="./assets/circle-loading.gif" id="loading-gif" /> -->
         </div>
 
         <div id="div_erros_login"></div>
@@ -86,17 +86,15 @@
 </html>
 
 <script>
-
-
     function entrar() {
-        aguardar();
+        // aguardar();
 
-        var emailVar = email_input.value;
-        var senhaVar = senha_input.value;
+        var emailVar = emailInput.value;
+        var senhaVar = senhaInput.value;
 
         if (emailVar == "" || senhaVar == "") {
             cardErro.style.display = "block"
-            mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
+            mensagem_erro.innerHTML = "Mensagem de erro para todos os campos em branco";
             finalizarAguardar();
             return false;
         }
@@ -128,10 +126,10 @@
 
                     sessionStorage.EMAIL_USUARIO = json.email;
                     sessionStorage.NOME_USUARIO = json.nome;
-                    sessionStorage.ID_USUARIO = json.id;
+                    sessionStorage.ID_USUARIO = json.idUsuario;
 
                     setTimeout(function () {
-                        window.location = "./dashboard/cards.html";
+                    window.location = "./posts/mural.html";
                     }, 1000); // apenas para exibir o loading
 
                 });

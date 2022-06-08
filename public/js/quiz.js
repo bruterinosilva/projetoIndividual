@@ -56,7 +56,7 @@ function responder() {
         quiz.innerHTML = 
         `
             <div class="quizResult">
-                <h2>Teste finalizado</h2>
+                <h2 class="final">Teste finalizado</h2>
                 <p>Clique no botão abaixo para exibir os resultados</p>
                 <button class="finalizar" onclick="results()">Mostrar resultados</button>
             </div>
@@ -72,13 +72,14 @@ function results() {
     quiz.innerHTML = 
         `
             <div class="resultsBox">
-                <h2>Resultado</h2>
+                <h2 class="resultado">Resultado</h2>
                 <div class="metricasBox">
-                    <p class="metricas moon">Sailor Moon: <br> ${sailor1} </p>
-                    <p class="metricas mercury">Sailor Mercury: <br>${sailor2} </p>
-                    <p class="metricas marte">Sailor Marte: <br>${sailor3} </p>
-                    <p class="metricas jupiter">Sailor Júpiter: <br>${sailor4} </p>
-                    <p class="metricas venus">Sailor Vênus: <br>${sailor5} </p>
+                    <button value="${sailor1}" id="sailor1" class="metricas moon">Sailor Moon: <br> ${sailor1}</button>
+                    <button value="${sailor2}" id="sailor2" class="metricas mercury">Sailor Mercury: <br>${sailor2}</button>
+                    <button value="${sailor3}" id="sailor3" class="metricas marte">Sailor Marte: <br>${sailor3}</button>
+                    <button value="${sailor4}" id="sailor4" class="metricas jupiter">Sailor Júpiter: <br>${sailor4}</button>
+                    <button value="${sailor5}" id="sailor5" class="metricas venus">Sailor Vênus: <br>${sailor5}</button>
+        
                 </div>
             </div>
         
@@ -88,7 +89,32 @@ function results() {
 
         grafico.classList.remove("inactive")
 
+        fetch("/usuarios/inserirQuiz", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                sailor1: sailor1,
+                sailor2: sailor2,
+                sailor3: sailor3,
+                sailor4: sailor4,
+                sailor5: sailor5,
+            })
+        }).then(function (resposta) {
 
+            console.log("resposta: ", resposta.body);
+
+            if (resposta.ok) {
+        
+            } else {
+                throw ("Houve um erro ao tentar realizar o cadastro!");
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
 
         const labels = [
             'Sailor Moon',
@@ -127,6 +153,7 @@ function results() {
             config
         );
         
+       
 
 
 }

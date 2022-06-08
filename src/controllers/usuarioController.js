@@ -33,7 +33,7 @@ function entrar(req, res) {
     } else if (senha == undefined) {
         res.status(400).send("Sua senha está indefinida!");
     } else {
-        
+
         usuarioModel.entrar(email, senha)
             .then(
                 function (resultado) {
@@ -63,7 +63,7 @@ function entrar(req, res) {
 function cadastrar(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
     var nome = req.body.nomeServer;
-    var usuario = req.body.usuarioServer;
+    var nickname = req.body.nicknameServer;
     var nascimento = req.body.nascimentoServer;
     var email = req.body.emailServer;
     var celular = req.body.celularServer;
@@ -73,7 +73,7 @@ function cadastrar(req, res) {
     // Faça as validações dos valores
     if (nome == undefined) {
         res.status(400).send("Seu nome está undefined!");
-    } else if (usuario == undefined) {
+    } else if (nickname == undefined) {
         res.status(400).send("Seu nickname está undefined!");
     } else if (nascimento == undefined) {
         res.status(400).send("Sua data de nascimento está undefined!");
@@ -84,9 +84,9 @@ function cadastrar(req, res) {
     } else if (senha == undefined) {
         res.status(400).send("Sua senha está undefined!");
     } else {
-        
+
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrar(nome, usuario, nascimento, email, celular, senha)
+        usuarioModel.cadastrar(nome, nickname, nascimento, email, celular, senha)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -104,9 +104,36 @@ function cadastrar(req, res) {
     }
 }
 
+function inserir_quiz(req, res) {
+    var sailor1 = req.body.sailor1;
+    var sailor2 = req.body.sailor2;
+    var sailor3 = req.body.sailor3;
+    var sailor4 = req.body.sailor4;
+    var sailor5 = req.body.sailor5;
+
+    // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
+    usuarioModel.insert_quiz(sailor1, sailor2, sailor3, sailor4, sailor5)
+    .then(
+        function (resultado) {
+            res.json(resultado);
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro ao realizar o cadastro! Erro: ",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
+
 module.exports = {
     entrar,
     cadastrar,
     listar,
-    testar
+    testar,
+    inserir_quiz,
 }
