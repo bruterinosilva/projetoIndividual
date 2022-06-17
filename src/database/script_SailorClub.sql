@@ -20,14 +20,14 @@ ptsSailorMars int,
 ptsSailorJupiter int,
 ptsSailorVenus int,
 fkUsuario int,
-foreign key (fkUsuario) references usuario (idUsuario)
+foreign key (fkUsuario) references usuario (idUsuario) 
 );
 
 CREATE TABLE aviso (
 	idAviso int primary key auto_increment,
 	titulo varchar(100),
     descricao varchar(150),
-	fkUsuario int,
+	fkUsuario int auto_increment,
 	foreign key (fkUsuario) references usuario (idUsuario)
 ); 
 
